@@ -30,10 +30,10 @@ export const OrganizersSection: React.FC<{ id?: string; className?: string }> = 
   return (
     <div
     id={id}
-    className={`w-full py-48 bg-blue-600 text-white rounded-xl shadow-lg flex flex-col ${className}`}
+    className={`w-full py-48 bg-blue-800 text-white rounded-xl shadow-lg flex flex-col ${className}`}
     >
 
-      <h3 className="text-4xl font-bold mb-12 text-left px-6 md:px-12 lg:px-20 text-yellow-400">
+      <h3 className="text-4xl font-bold mb-12 text-left px-6 md:px-12 lg:px-20 text-yellow-500">
         Organizers
       </h3>
 
@@ -61,7 +61,7 @@ export const OrganizersSection: React.FC<{ id?: string; className?: string }> = 
               <img
                 src={org.img}
                 alt={org.name}
-                className="rounded-full w-32 h-32 mb-4 border-4 border-yellow-400"
+                className="rounded-full w-32 h-32 mb-4 border-4 border-yellow-500"
               />
               <h4 className="font-bold text-xl mb-2 text-center">{org.name}</h4>
               <p className="text-center text-gray-700">{org.role}</p>

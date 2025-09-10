@@ -40,15 +40,15 @@ export default function ScheduleSection() {
   return (
     <section
       id="schedule"
-      className="relative w-full px-6 md:px-12 lg:px-20 py-24 bg-blue-600 text-white"
+      className="relative w-full px-6 md:px-12 lg:px-20 py-24 bg-blue-800 text-white"
     >
-      <h2 className="text-4xl font-bold text-center text-yellow-400 mb-16">
+      <h2 className="text-4xl font-bold text-center text-yellow-500 mb-16">
         Event Schedule
       </h2>
 
       <div className="relative">
         {/* Vertical timeline line */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-yellow-400 transform -translate-x-1/2" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-yellow-500 transform -translate-x-1/2" />
 
         <div className="space-y-32">
           {schedule.map((event, index) => (
@@ -59,20 +59,21 @@ export default function ScheduleSection() {
               }`}
             >
               {/* Dot on the line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-yellow-400 rounded-full border-4 border-blue-600 shadow-lg" />
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-yellow-500 rounded-full border-4 border-blue-600 shadow-lg" />
 
               {/* Card */}
               <div
-                className={`w-5/12 p-6 rounded-xl shadow-lg bg-blue-700 text-white hover:scale-105 transform transition duration-300 ${
+                className={`w-5/12 p-6 rounded-xl shadow-lg bg-blue-800 text-white transform transition duration-300 hover:scale-105 hover:drop-shadow-[0_0_10px_rgba(236,72,153,0.6)] ${
                   index % 2 === 0 ? "text-left" : ""
                 }`}
               >
+
                 {/* heading */}
-                <h3 className="text-2xl font-bold text-yellow-400 mb-2">
+                <h3 className="text-2xl font-bold text-yellow-500 mb-2">
                   {event.day}
                 </h3>
                 <p className="italic mb-4">{event.theme}</p>
-                <div className="relative border-l-4 border-yellow-400 pl-6 space-y-6">
+                <div className="relative border-l-4 border-yellow-500 pl-6 space-y-6">
                   {event.items.map((item, i) => {
                     const [time, ...rest] = item.split(": ");
                     return (
@@ -80,9 +81,9 @@ export default function ScheduleSection() {
                         key={i}
                         className="group transform transition-transform duration-300 hover:scale-[1.02]"
                       >
-                        <div className="bg-blue-800 p-4 rounded-xl shadow-md hover:bg-blue-900 transition-colors duration-300 ease-in-out">
+                        <div className="bg-blue-800 p-4 rounded-xl shadow-md hover:bg-pink-400 transition-colors duration-300 ease-in-out">
                           <p className="text-white">
-                            <span className="font-bold text-yellow-300">{time}</span>: {rest.join(": ")}
+                            <span className="font-bold text-yellow-500">{time}</span>: {rest.join(": ")}
                           </p>
                         </div>
                       </div>

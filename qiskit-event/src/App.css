@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(251, 113, 133, 0.4);
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 30px rgba(251, 113, 133, 0.6);
+  }
+}
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+  display: inline-block; /* ensures transform works */
+}
