@@ -4,9 +4,10 @@ interface SectionProps {
   id?: string;
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties; // ✅ Add this line
 }
 
-export const Section: React.FC<SectionProps> = ({ id, children, className }) => {
+export const Section: React.FC<SectionProps> = ({ id, children, className, style }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -29,7 +30,15 @@ export const Section: React.FC<SectionProps> = ({ id, children, className }) => 
         ${visible ? 'scale-100 opacity-100 translate-y-0' : 'scale-95 opacity-0 translate-y-12'}
         ${className}
       `}
-      style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start', paddingTop: '4rem', paddingBottom: '4rem' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        paddingTop: '4rem',
+        paddingBottom: '4rem',
+        ...(style || {})
+      }}
     >
       {children}
     </div>

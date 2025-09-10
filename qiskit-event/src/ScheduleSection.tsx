@@ -40,7 +40,7 @@ export default function ScheduleSection() {
   return (
     <section
       id="schedule"
-      className="relative w-full px-6 md:px-12 lg:px-20 py-24 bg-blue-800 text-white"
+      className="relative w-full px-6 md:px-12 lg:px-20 py-24 bg-black text-white"
     >
       <h2 className="text-4xl font-bold text-center text-yellow-500 mb-16">
         Event Schedule
