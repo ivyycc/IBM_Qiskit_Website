@@ -3,6 +3,8 @@ import './App.css';
 import { Section } from './Section';
 import { OrganizersSection } from "./OrganizersSection";
 
+import ScheduleSection  from "./ScheduleSection";
+
 
 function Navbar() {
   return (
@@ -24,7 +26,6 @@ function Footer() {
     </footer>
   );
 }
-
 
 
 function App() {
@@ -107,27 +108,9 @@ function App() {
 
 
       {/* Schedule */}
-      <Section id="schedule" className="w-full px-6 md:px-20 lg:px-40 bg-blue-600 text-white rounded-xl shadow-lg">
-        <h3 className="text-4xl font-bold text-yellow-400 mb-6 text-left">Schedule</h3>
-        <div className="relative border-l-2 border-yellow-400 ml-4">
-          <div className="mb-8 ml-6">
-            <div className="absolute w-4 h-4 bg-yellow-400 rounded-full -left-2 top-0"></div>
-            <p className="font-bold text-lg">10:00 AM – Opening Keynote</p>
-          </div>
-          <div className="mb-8 ml-6">
-            <div className="absolute w-4 h-4 bg-yellow-400 rounded-full -left-2 top-0"></div>
-            <p className="font-bold text-lg">11:00 AM – Quantum Circuits Workshop</p>
-          </div>
-          <div className="mb-8 ml-6">
-            <div className="absolute w-4 h-4 bg-yellow-400 rounded-full -left-2 top-0"></div>
-            <p className="font-bold text-lg">1:00 PM – Lunch & Networking</p>
-          </div>
-          <div className="mb-8 ml-6">
-            <div className="absolute w-4 h-4 bg-yellow-400 rounded-full -left-2 top-0"></div>
-            <p className="font-bold text-lg">2:00 PM – Research Panel</p>
-          </div>
-        </div>
-      </Section>
+      <ScheduleSection/>
+
+
 
 
       {/* Organizers */}
