@@ -2,22 +2,68 @@ import React, { useEffect } from 'react';
 import './App.css';
 import { Section } from './Section';
 import { OrganizersSection } from "./OrganizersSection";
-
 import ScheduleSection  from "./ScheduleSection";
-
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 function Navbar() {
-  return (
-    <nav className="bg-black text-white p-6 flex justify-center space-x-8 sticky top-0 z-50 shadow-lg">
-      <a href="#about" className="hover:text-yellow-500 font-semibold transform transition-transform duration-300 hover:scale-110">About</a>
-      <a href="#speakers" className="hover:text-yellow-500 font-semibold transform transition-transform duration-300 hover:scale-110">Speakers</a>
-      <a href="#schedule" className="hover:text-yellow-500 font-semibold transform transition-transform duration-300 hover:scale-110">Schedule</a>
-      <a href="#organizers" className="hover:text-yellow-500 font-semibold transform transition-transform duration-300 hover:scale-110">Organizers</a>
-      <a href="#resources" className="hover:text-yellow-500 font-semibold transform transition-transform duration-300 hover:scale-110">Resources</a>
-    </nav>
+  const [isOpen, setIsOpen] = useState(false);
 
+  const links = [
+    { href: "#about", label: "About" },
+    { href: "#speakers", label: "Speakers" },
+    { href: "#schedule", label: "Schedule" },
+    { href: "#organizers", label: "Organizers" },
+    { href: "#resources", label: "Resources" },
+  ];
+
+  return (
+    <nav className="bg-black text-white sticky top-0 z-50 shadow-lg">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        {/* Logo / Title */}
+        <a href="#" className="text-yellow-500 font-bold text-xl">Quantum Event</a>
+
+        {/* Desktop Links */}
+        <div className="hidden md:flex space-x-8">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="hover:text-yellow-500 font-semibold transform transition-transform duration-300 hover:scale-110"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden text-yellow-500 focus:outline-none"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* Mobile Dropdown */}
+      {isOpen && (
+        <div className="md:hidden flex flex-col space-y-4 px-6 pb-6 bg-black">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              className="hover:text-yellow-500 font-semibold transform transition-transform duration-300 hover:translate-x-1"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </nav>
   );
 }
+
 
 function Footer() {
   return (
@@ -38,29 +84,33 @@ function App() {
     <div className="bg-black font-sans space-y-12">
       <Navbar />
 
-      {/* Title Section */}
-      <Section
-        className="relative w-full px-6 md:px-20 lg:px-40 text-white rounded-xl shadow-lg bg-cover bg-center overflow-hidden"
-        style={{ backgroundImage: "url('/Fall%20Fest%20Graphics/Illustration%20Exports/Full_Illustration.png')" }}
+    {/* Title Section */}
+    <Section
+      className="relative w-full px-4 sm:px-8 md:px-16 lg:px-32 text-white rounded-xl shadow-lg bg-cover bg-center overflow-hidden"
+      style={{ backgroundImage: "url('/Fall%20Fest%20Graphics/Illustration%20Exports/Full_Illustration.png')" }}
+    >
+      {/* Gradient mask */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-900/80 to-blue-800/90 z-0"></div>
 
-      >
-        {/* Gradient mask */}
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/80 to-blue-800/90 z-0"></div>
+      {/* Content */}
+      <div className="relative z-10 text-center py-16 sm:py-20 md:py-24 animate-fadeIn">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-500 mb-4 sm:mb-6">
+          IBM Qiskit Quantum Event
+        </h2>
+        <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">
+          October, 2025 • Wits University
+        </p>
+        <a
+          href="https://www.ibm.com/events/qiskit"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-yellow-400 text-black font-semibold rounded-full shadow-lg pulse-glow hover:scale-105 transition-transform duration-300"
+        >
+          Register Now
+        </a>
+      </div>
+    </Section>
 
-        {/* Content */}
-        <div className="relative z-10 text-center p-12 animate-fadeIn">
-          <h2 className="text-5xl font-bold text-yellow-500 mb-6">IBM Qiskit Quantum Event</h2>
-          <p className="text-2xl mb-6">October, 2025 • Wits University</p>
-          <a
-            href="https://www.ibm.com/events/qiskit"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-10 py-4 bg-yellow-400 text-black font-semibold rounded-full shadow-lg pulse-glow"
-          >
-            Register Now
-          </a>
-        </div>
-      </Section>
 
 
 
@@ -70,9 +120,18 @@ function App() {
         className="w-full px-6 md:px-20 lg:px-40 py-20 bg-black text-white rounded-xl shadow-lg"
       >
         <div className="flex flex-col lg:flex-row items-center gap-8">
-          
-          {/* Text on the left */}
-          <div className="w-full lg:w-1/2 flex flex-col justify-center bg-blue-800 p-6 rounded-xl shadow-md space-y-6">
+
+          {/* SVG Badge (goes first on large, top on small) */}
+          <div className="w-full lg:w-1/2 flex justify-center items-center order-1 lg:order-1">
+            <img
+              src="/Fall Fest Graphics/Badge/Badge_Dark.svg"
+              alt="Qiskit Badge"
+              className="w-56 h-auto transform transition duration-300 hover:scale-110 hover:drop-shadow-[0_0_10px_rgba(236,72,153,0.6)]"
+            />
+          </div>
+
+          {/* Text (goes second on large, bottom on small) */}
+          <div className="w-full lg:w-1/2 flex flex-col justify-center bg-blue-800 p-6 rounded-xl shadow-md space-y-6 order-2 lg:order-2">
             <h3 className="text-4xl font-bold text-yellow-500 mb-4 text-left">
               About the Event
             </h3>
@@ -80,15 +139,6 @@ function App() {
               Join us to explore the future of quantum computing with IBM Qiskit.
               Learn from experts, attend workshops, and connect with researchers.
             </p>
-          </div>
-
-          {/* SVG Badge on the right */}
-          <div className="w-full lg:w-1/2 flex justify-center items-center">
-            <img
-              src="/Fall Fest Graphics/Badge/Badge_Dark.svg"
-              alt="Qiskit Badge"
-              className="w-56 h-auto transform transition duration-300 hover:scale-110 hover:drop-shadow-[0_0_10px_rgba(236,72,153,0.6)]"
-            />
           </div>
 
         </div>

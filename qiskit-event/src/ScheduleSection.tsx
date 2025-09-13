@@ -55,7 +55,7 @@ export default function ScheduleSection() {
             <div
               key={index}
               className={`relative flex w-full ${
-                index % 2 === 0 ? "justify-start" : "justify-end"
+                index % 2 === 0 ? "md:justify-start" : "md:justify-end"
               }`}
             >
               {/* Dot on the line */}
@@ -63,11 +63,10 @@ export default function ScheduleSection() {
 
               {/* Card */}
               <div
-                className={`w-5/12 p-6 rounded-xl shadow-lg bg-blue-800 text-white transform transition duration-300 hover:scale-105 hover:drop-shadow-[0_0_10px_rgba(236,72,153,0.6)] ${
-                  index % 2 === 0 ? "text-left" : ""
+                className={`w-full md:w-5/12 p-6 rounded-xl shadow-lg bg-blue-800 text-white transform transition duration-300 hover:scale-105 hover:drop-shadow-[0_0_10px_rgba(236,72,153,0.6)] ${
+                  index % 2 === 0 ? "text-left" : "md:text-left"
                 }`}
               >
-
                 {/* heading */}
                 <h3 className="text-2xl font-bold text-yellow-500 mb-2">
                   {event.day}
@@ -83,17 +82,16 @@ export default function ScheduleSection() {
                       >
                         <div className="bg-blue-800 p-4 rounded-xl shadow-md hover:bg-pink-400 transition-colors duration-300 ease-in-out">
                           <p className="text-white">
-                            <span className="font-bold text-yellow-500">{time}</span>: {rest.join(": ")}
+                            <span className="font-bold text-yellow-500">
+                              {time}
+                            </span>
+                            : {rest.join(": ")}
                           </p>
                         </div>
                       </div>
                     );
                   })}
                 </div>
-
-
-
-
               </div>
             </div>
           ))}
