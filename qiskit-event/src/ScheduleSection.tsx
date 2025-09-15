@@ -1,38 +1,28 @@
 export default function ScheduleSection() {
   const schedule = [
     {
-      day: "Day 1: Quantum Kickoff",
-      theme: "Introduce quantum basics and get hands-on with Qiskit.",
+      day: "🌟 Day 1: Quantum Kickoff",
+      theme: "Intro to quantum + Qiskit basics",
       items: [
-        "9:00 AM - 9:15 AM: Welcome and Icebreaker",
-        "9:15 AM - 10:00 AM: Lecture - Quantum Computing Basics 101",
-        "10:00 AM - 10:15 AM: Break",
-        "10:15 AM - 11:30 AM: Workshop - Getting Started with Qiskit",
-        "11:30 AM - 12:00 PM: Quantum Trivia Quiz Challenge",
-        '12:00 PM - 1:00 PM: Panel Q&A - “My Journey in Quantum Computing” (Shawal)',
+        "9:00 – 9:15 → Welcome & Icebreaker",
+        "9:15 – 10:00 → Lecture: Quantum Computing Basics 101:superposition, qubits, entanglement",
+        "10:00 – 10:15 → Break: Have a snack!",
+        "10:15 – 11:30 → Workshop: Getting Started with Qiskit: install, run first superposition circuit, probability histograms",
+        "11:30 – 12:00 → Quantum Trivia Kahoot!: fun prizes for top 3!",
+        "12:00 – 12:30 → Panel/Q&A: My Journey in Quantum Computing" ,
       ],
     },
     {
-      day: "Day 2: Diving Deeper",
-      theme: "Explore quantum applications and circuit-building.",
+      day: "🌟 Day 2: Quantum Deep Dive & Celebration",
+      theme: "Circuits, challenges, and the IBM keynote finale",
       items: [
-        "9:00 AM - 9:10 AM: Quick Recap",
-        "9:10 AM - 10:00 AM: Lecture - Quantum Computing Applications Talk",
-        "10:00 AM - 10:15 AM: Break",
-        "10:15 AM - 11:30 AM: Workshop - Creating Circuits in Qiskit",
-        "11:30 AM - 12:00 PM: Qiskit Circuit Builder Challenge Kickoff",
-        "12:00 PM - 1:00 PM: Mini-Workshop - Exploring Quantum Gates",
-      ],
-    },
-    {
-      day: "Day 3: Quantum Finale",
-      theme: "Celebrate quantum history and wrap up.",
-      items: [
-        "9:00 AM - 9:10 AM: Day 3 Welcome",
-        "9:10 AM - 10:00 AM: Lecture - The History of Quantum Computing",
-        "10:00 AM - 10:15 AM: Break",
-        "10:15 AM - 11:30 AM: Workshop - Building a Quantum Random Number Generator",
-        "11:30 AM - 12:00 PM: Closing Ceremony",
+        "9:00 – 9:10 → Quick Recap",
+        "9:10 – 10:00 → Lecture: Quantum Applications in the Real World",
+        "10:00 – 10:15 → Break: Have a snack!",
+        "10:15 – 11:00 → Workshop: Building Circuits in Qiskit: X, H, Bell state",
+        "11:00 – 11:30 → Challenge: Bell State Circuit / Small Puzzle Extension",
+        "11:30 – 12:00 → IBM Speaker Talk + Q&A: speaker to be confirmed...coming soon!",
+        "12:00 – 12:30 → Closing Ceremony: Certificates, Prizes, and Next Steps in Your Quantum Journey",
       ],
     },
   ];
@@ -68,10 +58,10 @@ export default function ScheduleSection() {
                 }`}
               >
                 {/* heading */}
-                <h3 className="text-2xl font-bold text-yellow-500 mb-2">
+                <h3 className="text-2xl font-extrabold text-yellow-400 mb-2 tracking-wide">
                   {event.day}
                 </h3>
-                <p className="italic mb-4">{event.theme}</p>
+                <p className="italic mb-4 text-pink-300">{event.theme}</p>
                 <div className="relative border-l-4 border-yellow-500 pl-6 space-y-6">
                   {event.items.map((item, i) => {
                     const [time, ...rest] = item.split(": ");

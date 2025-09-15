@@ -5,6 +5,7 @@ import { OrganizersSection } from "./OrganizersSection";
 import ScheduleSection  from "./ScheduleSection";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import WitsMap from "./WitsMap";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -182,28 +183,59 @@ function App() {
       <OrganizersSection id="organizers" className="my-extra-styles" />
 
 
-       {/* Resources */}
-      <Section id="resources" className="w-full px-6 md:px-20 lg:px-40 bg-black text-white rounded-xl shadow-lg">
-        <h3 className="text-4xl font-bold text-yellow-500 mb-6">Resources</h3>
-        {/* Map on the left */}
-          <div className="w-full lg:w-1/2 h-80 rounded-xl overflow-hidden shadow-lg">
-            <iframe
-              title="Map of Wits University"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3303.8881447552056!2d27.998092915207586!3d-26.191249783438093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950e551b5c0e9f%3A0x8cdd68be1d7241c!2sUniversity%20of%20the%20Witwatersrand!5e0!3m2!1sen!2sza!4v1694383041234!5m2!1sen!2sza"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+      {/* Resources */}
+      <Section
+        id="resources"
+        className="w-full px-6 md:px-20 lg:px-40 bg-black text-white rounded-xl shadow-lg"
+      >
+        <h3 className="text-4xl font-bold text-yellow-500 mb-6 text-center">Resources</h3>
+
+        {/* Flex container for map + resources list */}
+        <div className="container mx-auto flex flex-col lg:flex-row gap-6 items-stretch">
+          {/* Map takes half screen on laptop */}
+          <div className="w-full lg:w-1/2 h-80 lg:h-auto rounded-xl overflow-hidden shadow-lg">
+              <WitsMap />
           </div>
-        <ul className="list-disc pl-6 space-y-2 text-left text-lg">
-          <li><a href="https://qiskit.org/" className="text-blue-800 hover:underline">Qiskit Official Website</a></li>
-          <li><a href="https://learn.qiskit.org/" className="text-blue-800 hover:underline">Qiskit Learning Portal</a></li>
-          <li><a href="https://github.com/Qiskit" className="text-blue-800 hover:underline">Qiskit GitHub</a></li>
-        </ul>
+
+          {/* Links */}
+          <div className="w-full lg:w-1/2 flex items-center">
+            <ul className="w-full space-y-4 text-lg">
+              <li className="transition-transform transform hover:scale-105">
+                <a
+                  href="https://qiskit.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block p-4 rounded-xl bg-blue-800 hover:bg-pink-500 text-white font-semibold shadow-lg hover:shadow-pink-400 transition-all duration-300"
+                >
+                  🌐 Qiskit Official Website
+                </a>
+              </li>
+              <li className="transition-transform transform hover:scale-105">
+                <a
+                  href="https://learn.qiskit.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block p-4 rounded-xl bg-blue-800 hover:bg-pink-500 text-white font-semibold shadow-lg hover:shadow-pink-400 transition-all duration-300"
+                >
+                  📘 Qiskit Learning Portal
+                </a>
+              </li>
+              <li className="transition-transform transform hover:scale-105">
+                <a
+                  href="https://github.com/Qiskit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block p-4 rounded-xl bg-blue-800 hover:bg-pink-500 text-white font-semibold shadow-lg hover:shadow-pink-400 transition-all duration-300"
+                >
+                  💻 Qiskit GitHub
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </Section>
+
+
 
       <Footer />
     </div>
