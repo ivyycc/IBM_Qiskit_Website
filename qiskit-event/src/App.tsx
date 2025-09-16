@@ -125,7 +125,7 @@ function App() {
       <main>
         {/* Hero Section */}
         <div 
-          className="relative text-white bg-cover bg-center flex items-center justify-center min-h-[80vh]"
+          className="relative w-full text-white bg-cover bg-center flex items-center justify-center min-h-screen "
           style={{ backgroundImage: "url('/Fall%20Fest%20Graphics/Illustration%20Exports/Full_Illustration.png')" }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-blue-900/70 to-blue-800/80"></div>
@@ -134,9 +134,9 @@ function App() {
               <TypingText/>
             </h1>
 
-            <p className="text-lg sm:text-xl md:text-2xl">October, 2025 • Wits University</p>
+            <p className="text-lg sm:text-xl md:text-2xl"> October, 2025 • Wits University</p>
             <a
-              href="https://www.ibm.com/events/qiskit"
+              href="https://forms.gle/V1LtfSsAgLFRtx7r8"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-8 py-4 bg-yellow-400 text-black font-semibold rounded-md shadow-lg hover:scale-105 transition-transform duration-300 pulse-glow"
@@ -153,7 +153,7 @@ function App() {
             {/* Image on the left */}
             <div className="flex justify-center">
               <img
-                src="/Fall Fest Graphics/Badge/Badge_Dark.svg"
+                src="/Fall Fest Graphics/Badge/Badge_Dark.png"
                 alt="Qiskit Badge"
                 className="w-72 h-auto transform transition duration-500 hover:rotate-6 hover:drop-shadow-[0_0_10px_rgba(236,72,153,0.6)]"
               />
