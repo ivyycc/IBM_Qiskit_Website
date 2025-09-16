@@ -59,7 +59,7 @@ function Navbar() {
   return (
     <nav className="bg-black/80 backdrop-blur-sm text-white sticky top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#" className="text-yellow-500 font-bold text-xl">Qiskit Fall Fest</a>
+        <a href="#" className="text-yellow-500 font-bold text-xl">IBM Qiskit Fall Fest</a>
         <div className="hidden md:flex space-x-8">
           {links.map((link) => (
             <a key={link.href} href={link.href} className="hover:text-yellow-500 font-semibold transition-colors duration-300">
@@ -124,26 +124,80 @@ function App() {
       <Navbar />
       <main>
         {/* Hero Section */}
-        <div 
-          className="relative w-full text-white bg-cover bg-center flex items-center justify-center min-h-screen "
+        <div
+          className="relative w-full text-white bg-cover bg-center flex items-center justify-center min-h-screen"
           style={{ backgroundImage: "url('/Fall%20Fest%20Graphics/Illustration%20Exports/Full_Illustration.png')" }}
         >
+          {/* Overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-b from-blue-900/70 to-blue-800/80"></div>
-          <div className="relative z-10 text-center p-4 space-y-6">
+
+          {/* Content */}
+          <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 space-y-10 max-w-6xl mx-auto">
+          
+            
+            {/* Title */}
             <h1 className="font-mono text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-yellow-500">
-              <TypingText/>
+              <TypingText />
             </h1>
 
-            <p className="text-lg sm:text-xl md:text-2xl"> October, 2025 • Wits University</p>
+           {/* Partner logos */}
+            <div className="space-y-3 mt-6">
+              <p className="text-sm sm:text-base uppercase tracking-wide text-yellow-100 italic">
+                Brought to you by
+              </p>
+
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 
+                              bg-yellow-200/30 backdrop-blur-md rounded-lg 
+                              px-4 sm:px-6 py-3 sm:py-4 
+                              max-w-xs sm:max-w-md lg:max-w-lg mx-auto">
+                
+                {/* IBM Logo */}
+                <a 
+                  href="https://www.ibm.com/quantum" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="transition-transform duration-300 hover:scale-105 hover:drop-shadow-[0_0_20px_rgba(255,255,200,0.8)] 
+                 hover:drop-shadow-[0_0_30px_rgba(255,255,200,0.6)]"
+                >
+                  <img
+                    src="/Fall Fest Graphics/Illustration Exports/IBM Quantum Logo.png"
+                    alt="IBM Logo"
+                    className="h-12 sm:h-16 md:h-20 object-contain"
+                  />
+                </a>
+
+                {/* Wits Logo */}
+                <a 
+                  href="https://www.wits.ac.za/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="transition-transform duration-300 hover:scale-105 hover:drop-shadow-[0_0_20px_rgba(255,255,200,0.8)] 
+                 hover:drop-shadow-[0_0_30px_rgba(255,255,200,0.6)]"
+                >
+                  <img
+                    src="/wits-logo.svg"
+                    alt="Wits University Logo"
+                    className="h-12 sm:h-16 md:h-20 object-contain"
+                  />
+                </a>
+
+              </div>
+            </div>
+
+            {/* Date and Location */}
+            <p className="text-lg sm:text-xl md:text-4xl font-bold text-pink-100" style={{ textShadow: '0 0 2px #fbcfe875' }} >
+              October, 2025 • Wits University
+            </p>
+
+            {/* Register Button */}
             <a
               href="https://forms.gle/V1LtfSsAgLFRtx7r8"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-8 py-4 bg-yellow-400 text-black font-semibold rounded-md shadow-lg hover:scale-105 transition-transform duration-300 pulse-glow"
+              className="inline-block px-8 py-4 bg-yellow-400 text-black font-semibold rounded-md shadow-lg hover:scale-105 transition-transform duration-300 pulse-glow mt-4 sm:mt-6"
             >
               Register Now
             </a>
-
           </div>
         </div>
 
@@ -175,7 +229,7 @@ function App() {
 
         {/* Speakers Section (Example update) */}
         <Section id="speakers" className="bg-blue-800 text-white">
-          <div className="text-left mb-12">
+          <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-yellow-500">Speakers</h2>
             <p className="text-lg text-blue-200 mt-2">Meet the pioneers leading the quantum charge.</p>
           </div>
@@ -187,7 +241,7 @@ function App() {
                 ?
               </div>
               <h3 className="font-bold text-2xl text-white">TBC</h3>
-              <p className="text-pink-300">Speaker coming soon</p>
+              <p className="text-pink-300">IBM Speaker coming soon</p>
               <p className="text-sm text-blue-300 mt-2 italic">Stay tuned!</p>
             </div>
 
@@ -198,7 +252,7 @@ function App() {
               </div>
               <h3 className="font-bold text-2xl text-white">Shawal Kassim</h3>
               <p className="text-pink-300">Wits University Researcher</p>
-              <p className="text-sm text-blue-300 mt-2 italic">Reveal coming soon!</p>
+              <p className="text-sm text-blue-300 mt-2 italic">More details to follow!</p>
             </div>
           </div>
         </Section>
@@ -226,7 +280,7 @@ function App() {
               <div className="bg-blue-900 rounded-lg p-6 md:p-8 shadow-xl">
                 <h3 className="text-2xl font-bold text-yellow-400 mb-4">Our Location</h3>
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                  The Qiskit Fall Fest will be hosted at the WITS (specific location TBC).
+                  The Qiskit Fall Fest will be hosted at WITS University (specific venue TBC).
                   
                 </p>
                       <div 

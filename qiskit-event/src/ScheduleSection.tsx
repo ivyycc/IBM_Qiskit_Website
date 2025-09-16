@@ -107,7 +107,7 @@ export default function ScheduleSection() {
               className={`relative flex flex-col items-center md:flex-row md:justify-between ${dayIdx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
             >
               {/* Timeline Dot - hidden on mobile */}
-              <div className="absolute left-1/2 top-8 -translate-x-1/2 w-6 h-6 bg-yellow-500 rounded-full border-4 border-black ring-4 ring-blue-600 z-10 hidden md:block" />
+              <div className="absolute left-1/2 top-8 -translate-x-1/2 w-6 h-6 bg-pink-500 rounded-full border-4 border-black ring-4 ring-blue-600 z-10 hidden md:block" />
 
               {/* Image Container */}
               <div className="w-full md:w-5/12 flex justify-center order-first md:order-none">
