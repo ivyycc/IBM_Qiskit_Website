@@ -66,3 +66,89 @@
 .animate-fadeIn {
   animation: fadeIn 1.2s ease-out forwards;
 }
+/* Typing text animation for desktop */
+.typing-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap; /* Prevents text from wrapping on large screens */
+  border-right: 2px solid #FFD700;
+  font-family: monospace; 
+  animation: 
+    typing 4s steps(25, end) forwards,
+    blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: #FFD700; }
+}
+
+/* Mobile-specific styles for the typing animation */
+@media (max-width: 640px) {
+  .typing-text {
+    /* Reset desktop animation properties */
+    white-space: normal;
+    animation: 
+      mobile-typing 4s steps(25, end) forwards, 
+      blink-caret 0.75s step-end infinite;
+  }
+  
+  @keyframes mobile-typing {
+    0% {
+      clip-path: inset(0 100% 0 0); /* Start with a horizontal clip */
+    }
+    100% {
+      clip-path: inset(0 0 0 0); /* End with a full reveal */
+    }
+  }
+}
+
+/* Entrance float-in from left */
+@keyframes floatInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Entrance float-in from right */
+@keyframes floatInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Continuous bob/pulse animation */
+@keyframes bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Apply entrance animation first */
+.float-in-left {
+  animation: floatInLeft 0.9s ease-out forwards, bob 2s ease-in-out 0.9s infinite;
+}
+
+.float-in-right {
+  animation: floatInRight 0.9s ease-out forwards, bob 2s ease-in-out 0.9s infinite;
+}
+
+

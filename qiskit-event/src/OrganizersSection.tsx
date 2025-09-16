@@ -1,74 +1,93 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Github, Linkedin, Globe } from "lucide-react";
+
+const MediumIcon: React.FC<{ size?: number; className?: string }> = ({ size = 20, className }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 1043.63 592.71" 
+    height={size} 
+    className={className}
+    fill="currentColor"
+  >
+    <path d="M588.67 296.35c0 163.64-131.71 296.35-294.34 296.35S0 460 0 296.35 131.71 0 294.33 0s294.34 132.71 294.34 296.35zM911.5 296.35c0 154.48-65.85 279.65-147.05 279.65s-147.05-125.17-147.05-279.65 65.85-279.65 147.05-279.65 147.05 125.17 147.05 279.65zm132.13 0c0 134.19-29.36 243-65.55 243s-65.55-108.81-65.55-243 29.36-243 65.55-243 65.55 108.81 65.55 243z" />
+  </svg>
+);
 
 interface Organizer {
   name: string;
   role: string;
   img: string;
   bio: string;
+  socials?: {
+    twitter?: string;
+    linkedin?: string;
+    github?: string;
+    medium?: string;
+  };
 }
 
 const organizers: Organizer[] = [
   { 
-    name: "Ivy", 
-    role: "Co-organizer", 
-    img: "/website_photos/ivy.jpg",
-    bio: "Honour student in Big Data Analytics, passionate about quantum computing and its potential to revolutionize technology." 
-  },
-  { 
     name: "Mubeen", 
     role: "Lead organizer", 
     img: "/website_photos/mubeen.jpg",
-    bio: "2nd year CS student with a lifelong passion for quantum computing and sharing knowledge!" 
+    bio: "2nd year CS student with a lifelong passion for quantum computing and sharing knowledge!",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/mubeen-dewan-18528a306/",
+      medium: "https://medium.com/@mubeendewan",
+    }
+  },
+  { 
+    name: "Ivy", 
+    role: "Co-organizer", 
+    img: "/website_photos/ivy.jpg",
+    bio: "Honour student in Big Data Analytics, excited about the potential of quantum computing to revolutionize technology.",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/ivy-chepkwony-1872a22a8/",
+      github: "https://github.com/ivyycc",
+    }
   },
   { 
     name: "Lanet", 
     role: "Co-organizer", 
     img: "/website_photos/lanet.jpg",
-    bio: "Passionate about innovation and fostering impactful solutions that bridge technical depth with real-world relevance." 
+    bio: "Passionate about innovation and fostering impactful solutions that bridge technical depth with real-world relevance.",
+    socials: {
+      linkedin: "http://www.linkedin.com/in/lanet-ndebe-7a57b7298",
+      github: "https://github.com/2626245"
+    }
   },
   { 
     name: "Ntando", 
     role: "Co-organizer", 
     img: "/website_photos/ntando.jpg",
-    bio: "CS student curious about quantum computing and always up for learning, sharing, and growing with others." 
+    bio: "CS student curious about quantum computing and always up for learning, sharing, and growing with others.",
+    socials: {
+      linkedin: "http://linkedin.com/in/ntandoyenkosi-memela-9844a5243/",
+    }
   },
 ];
 
 export const OrganizersSection: React.FC<{ id?: string; className?: string }> = ({ id, className }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // Check if device is mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   const scrollToOrganizer = (index: number) => {
     const container = containerRef.current;
     if (!container) return;
 
-    // Find the original card (not clones) to center on
-    const originalCards = container.querySelectorAll<HTMLDivElement>("[data-index]");
-    const targetCard = Array.from(originalCards).find(card => 
-      parseInt(card.getAttribute('data-index') || '0') === index
-    );
+    const cards = container.querySelectorAll<HTMLDivElement>("[data-index]");
+    const targetCard = cards[index];
     
     if (!targetCard) return;
 
-    const containerWidth = container.clientWidth;
-    const cardCenter = targetCard.offsetLeft + targetCard.clientWidth / 2;
-    const containerCenter = containerWidth / 2;
-    const scrollPosition = cardCenter - containerCenter;
+    // Use a more reliable centering method
+    const scrollPosition = targetCard.offsetLeft - container.offsetWidth / 2 + targetCard.offsetWidth / 2;
 
     container.scrollTo({
-      left: Math.max(0, scrollPosition),
+      left: scrollPosition,
       behavior: "smooth",
     });
 
@@ -76,28 +95,37 @@ export const OrganizersSection: React.FC<{ id?: string; className?: string }> = 
   };
 
   const goToPrevious = () => {
-    const newIndex = activeIndex > 0 ? activeIndex - 1 : organizers.length - 1;
-    scrollToOrganizer(newIndex);
+    if (activeIndex > 0) {
+      scrollToOrganizer(activeIndex - 1);
+    }
   };
 
   const goToNext = () => {
-    const newIndex = activeIndex < organizers.length - 1 ? activeIndex + 1 : 0;
-    scrollToOrganizer(newIndex);
+    if (activeIndex < organizers.length - 1) {
+      scrollToOrganizer(activeIndex + 1);
+    }
   };
 
-  // Automatic spotlighting on mobile only
+  // Effect to update isMobile state on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Effect to automatically center on mobile when the user scrolls manually
   useEffect(() => {
     const container = containerRef.current;
     if (!container || !isMobile) return;
 
     const handleScroll = () => {
-      // Only look at original cards for spotlighting
-      const originalCards = container.querySelectorAll<HTMLDivElement>("[data-index]");
       let closestIndex = 0;
       let closestDistance = Infinity;
       const containerCenter = container.scrollLeft + container.clientWidth / 2;
 
-      originalCards.forEach((card) => {
+      container.querySelectorAll<HTMLDivElement>("[data-index]").forEach((card) => {
         const idx = parseInt(card.getAttribute('data-index') || '0');
         const cardCenter = card.offsetLeft + card.clientWidth / 2;
         const distance = Math.abs(containerCenter - cardCenter);
@@ -112,17 +140,11 @@ export const OrganizersSection: React.FC<{ id?: string; className?: string }> = 
       }
     };
 
-    const debouncedScroll = debounce(handleScroll, 50);
-    container.addEventListener("scroll", debouncedScroll, { passive: true });
-    return () => container.removeEventListener("scroll", debouncedScroll);
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    return () => container.removeEventListener("scroll", handleScroll);
   }, [activeIndex, isMobile]);
 
-  // Re-center on resize and initial load
-  useEffect(() => {
-    const timer = setTimeout(() => scrollToOrganizer(activeIndex), 100);
-    return () => clearTimeout(timer);
-  }, [isMobile]);
-
+  // Handle re-centering on resize
   useEffect(() => {
     const handleResize = () => {
       setTimeout(() => scrollToOrganizer(activeIndex), 100);
@@ -133,147 +155,83 @@ export const OrganizersSection: React.FC<{ id?: string; className?: string }> = 
 
   return (
     <div
-      id={id}
-      className={`w-full py-16 bg-blue-800 text-white rounded-xl shadow-lg flex flex-col ${className}`}
+      id={"organizers"}
+      className={`w-full py-16 bg-blue-800 text-white rounded-lg shadow-lg flex flex-col items-center ${className}`}
     >
-      <h3 className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-12 text-left px-4 sm:px-12 lg:px-20 text-yellow-500">
-        Organizers
+      <h3 className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-12 text-center text-yellow-500">
+        Meet the Organizers
       </h3>
 
-      <div className="w-full relative">
-        {/* Navigation Buttons - Desktop only */}
+      <div className="px-4 md:px-0"> 
+         <p className="text-lg sm:text-base md:text-lg text-blue-200 mt-2 max-w-full break-words text-center ">
+        Meet the Witsies behind the scenes, passionate about bringing quantum computing to life!
+        </p>
+      </div>
+
+
+      
+      <div className="w-full relative px-4 sm:px-12 lg:px-20">
+        {/* Navigation Buttons */}
         <button
           onClick={goToPrevious}
-          className="hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 z-50 bg-yellow-500 hover:bg-yellow-600 text-blue-800 rounded-full p-3 transition-all duration-300 shadow-lg hover:shadow-xl"
+          disabled={activeIndex === 0}
+          className={`absolute left-0 top-1/2 -translate-y-1/2 z-50 p-2 transition-colors duration-300 ${
+            activeIndex === 0 
+              ? 'text-gray-500 cursor-not-allowed' 
+              : 'text-yellow-500 hover:text-yellow-400'
+          }`}
           aria-label="Previous organizer"
         >
-          <ChevronLeft size={24} />
+          <ChevronLeft size={32} />
         </button>
 
         <button
           onClick={goToNext}
-          className="hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 z-50 bg-yellow-500 hover:bg-yellow-600 text-blue-800 rounded-full p-3 transition-all duration-300 shadow-lg hover:shadow-xl"
+          disabled={activeIndex === organizers.length - 1}
+          className={`absolute right-0 top-1/2 -translate-y-1/2 z-50 p-2 transition-colors duration-300 ${
+            activeIndex === organizers.length - 1 
+              ? 'text-gray-500 cursor-not-allowed' 
+              : 'text-yellow-500 hover:text-pink-600'
+          }`}
           aria-label="Next organizer"
         >
-          <ChevronRight size={24} />
+          <ChevronRight size={32} />
         </button>
 
         {/* Carousel Container */}
         <div
           ref={containerRef}
-          className="flex gap-6 sm:gap-8 overflow-x-auto scroll-smooth py-12 sm:py-16 no-scrollbar snap-x snap-mandatory"
-          style={{ 
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-          }}
+          className={`flex gap-8 overflow-x-auto scroll-smooth py-12 no-scrollbar snap-x snap-mandatory ${
+            isMobile ? 'justify-start' : 'justify-center'
+          }`}
+          style={isMobile ? { paddingLeft: 'calc(50% - 140px)', paddingRight: 'calc(50% - 140px)' } : {}}
         >
-          {/* Left clone for infinite effect */}
-          {organizers.slice(-2).map((org, index) => {
-            const originalIndex = organizers.length - 2 + index;
-            const distance = originalIndex - activeIndex;
-            const absDistance = Math.abs(distance);
-
-            // Adjust distance for wrapping
-            let adjustedDistance = distance;
-            if (activeIndex <= 1 && originalIndex >= organizers.length - 2) {
-              adjustedDistance = -(organizers.length - originalIndex + activeIndex);
-            }
-            const adjustedAbsDistance = Math.abs(adjustedDistance);
-
-            const scale = adjustedDistance === 0 ? 1.15 : adjustedAbsDistance === 1 ? 0.92 : 0.8;
-            const opacity = adjustedDistance === 0 ? 1 : adjustedAbsDistance === 1 ? 0.85 : 0.6;
-            const shadow = adjustedDistance === 0 
-              ? "0 15px 35px rgba(0,0,0,0.6), 0 5px 15px rgba(255,235,59,0.3)" 
-              : adjustedAbsDistance === 1 
-                ? "0 5px 15px rgba(0,0,0,0.3)" 
-                : "0 2px 8px rgba(0,0,0,0.2)";
-            const borderGlow = adjustedDistance === 0 ? "0 0 20px rgba(255,235,59,0.5)" : "none";
-
-            return (
-              <div
-                key={`clone-left-${org.name}`}
-                className="org-card flex-shrink-0 bg-black text-white rounded-3xl cursor-pointer flex flex-col items-center transition-all duration-500 ease-out relative snap-center"
-                style={{
-                  width: isMobile ? "clamp(200px, 70vw, 280px)" : "280px",
-                  minHeight: "400px",
-                  transform: `scale(${scale}) ${adjustedDistance === 0 ? 'translateY(-10px)' : ''}`,
-                  opacity,
-                  boxShadow: `${shadow}, ${borderGlow}`,
-                  padding: "1.5rem",
-                  border: adjustedDistance === 0 ? '2px solid rgba(255,235,59,0.3)' : '2px solid transparent',
-                }}
-                onClick={() => isMobile && scrollToOrganizer(originalIndex)}
-              >
-                <div 
-                  className="rounded-full border-4 border-yellow-500 object-cover transition-all duration-500 overflow-hidden"
-                  style={{
-                    width: '140px',
-                    height: '140px',
-                    borderColor: adjustedDistance === 0 ? '#fbbf24' : '#eab308',
-                    borderWidth: adjustedDistance === 0 ? '4px' : '3px'
-                  }}
-                >
-                  <img
-                    src={org.img}
-                    alt={org.name}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-                
-                <div className="text-center px-2 flex flex-col flex-1 justify-start mt-4">
-                  <h4 className="font-bold mb-2 text-xl text-yellow-400">
-                    {org.name}
-                  </h4>
-                  <p className="text-yellow-200 text-sm font-medium mb-3">
-                    {org.role}
-                  </p>
-                  <p className="text-gray-300 text-sm leading-relaxed flex-1">
-                    {org.bio}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-
-          {/* Original organizers */}
           {organizers.map((org, index) => {
-            const distance = index - activeIndex;
-            const absDistance = Math.abs(distance);
-
-            const scale = distance === 0 ? 1.15 : absDistance === 1 ? 0.92 : 0.8;
-            const opacity = distance === 0 ? 1 : absDistance === 1 ? 0.85 : 0.6;
-            const shadow = distance === 0 
-              ? "0 15px 35px rgba(0,0,0,0.6), 0 5px 15px rgba(255,235,59,0.3)" 
-              : absDistance === 1 
-                ? "0 5px 15px rgba(0,0,0,0.3)" 
-                : "0 2px 8px rgba(0,0,0,0.2)";
-            const borderGlow = distance === 0 ? "0 0 20px rgba(255,235,59,0.5)" : "none";
+            const isActive = index === activeIndex;
 
             return (
               <div
-                key={`original-${org.name}`}
+                key={org.name}
                 data-index={index}
-                className="org-card flex-shrink-0 bg-black text-white rounded-3xl cursor-pointer flex flex-col items-center transition-all duration-500 ease-out relative snap-center"
+                className={`org-card flex-shrink-0 bg-black text-white rounded-lg cursor-pointer flex flex-col items-center transition-all duration-500 ease-out relative snap-center px-6 py-8 shadow-xl ${
+                  isActive 
+                    ? 'transform scale-105 shadow-[0_0_20px_rgba(255,235,59,0.3)]' 
+                    : 'hover:scale-100 hover:shadow-lg'
+                }`}
                 style={{
-                  width: isMobile ? "clamp(200px, 70vw, 280px)" : "280px",
-                  minHeight: "400px",
-                  transform: `scale(${scale}) ${distance === 0 ? 'translateY(-10px)' : ''}`,
-                  opacity,
-                  boxShadow: `${shadow}, ${borderGlow}`,
-                  padding: "1.5rem",
-                  border: distance === 0 ? '2px solid rgba(255,235,59,0.3)' : '2px solid transparent',
+                  width: "clamp(250px, 80vw, 320px)",
+                  minHeight: "450px",
+                  border: '2px solid transparent',
+                  boxShadow: isActive 
+                    ? '0 0 15px rgba(238, 79, 156, 0.7)' 
+                    : '0 0 5px rgba(0,0,0,0.1)',
+                  opacity: isActive ? 1 : 0.6,
                 }}
-                onClick={() => isMobile && scrollToOrganizer(index)}
+                onClick={() => scrollToOrganizer(index)}
               >
                 <div 
-                  className="rounded-full border-4 border-yellow-500 object-cover transition-all duration-500 overflow-hidden"
-                  style={{
-                    width: '140px',
-                    height: '140px',
-                    borderColor: distance === 0 ? '#fbbf24' : '#eab308',
-                    borderWidth: distance === 0 ? '4px' : '3px'
-                  }}
+                  className="rounded-lg border-4 border-yellow-500/70 object-cover overflow-hidden"
+                  style={{ width: '150px', height: '150px' }}
                 >
                   <img
                     src={org.img}
@@ -283,85 +241,50 @@ export const OrganizersSection: React.FC<{ id?: string; className?: string }> = 
                   />
                 </div>
                 
-                <div className="text-center px-2 flex flex-col flex-1 justify-start mt-4">
-                  <h4 className="font-bold mb-2 text-xl text-yellow-400">
+                <div className="text-center px-2 flex flex-col flex-1 justify-start mt-6 space-y-2">
+                  <h4 className="font-bold text-2xl text-yellow-400">
                     {org.name}
                   </h4>
-                  <p className="text-yellow-200 text-sm font-medium mb-3">
+                  <p className="text-pink-400/90 text-base font-medium">
                     {org.role}
                   </p>
-                  <p className="text-gray-300 text-sm leading-relaxed flex-1">
+                  <p className="text-gray-300 text-sm leading-relaxed flex-1 mt-4">
                     {org.bio}
                   </p>
-                </div>
-              </div>
-            );
-          })}
-
-          {/* Right clone for infinite effect */}
-          {organizers.slice(0, 2).map((org, index) => {
-            const originalIndex = index;
-            const distance = originalIndex - activeIndex;
-            const absDistance = Math.abs(distance);
-
-            // Adjust distance for wrapping
-            let adjustedDistance = distance;
-            if (activeIndex >= organizers.length - 2 && originalIndex <= 1) {
-              adjustedDistance = organizers.length - activeIndex + originalIndex;
-            }
-            const adjustedAbsDistance = Math.abs(adjustedDistance);
-
-            const scale = adjustedDistance === 0 ? 1.15 : adjustedAbsDistance === 1 ? 0.92 : 0.8;
-            const opacity = adjustedDistance === 0 ? 1 : adjustedAbsDistance === 1 ? 0.85 : 0.6;
-            const shadow = adjustedDistance === 0 
-              ? "0 15px 35px rgba(0,0,0,0.6), 0 5px 15px rgba(255,235,59,0.3)" 
-              : adjustedAbsDistance === 1 
-                ? "0 5px 15px rgba(0,0,0,0.3)" 
-                : "0 2px 8px rgba(0,0,0,0.2)";
-            const borderGlow = adjustedDistance === 0 ? "0 0 20px rgba(255,235,59,0.5)" : "none";
-
-            return (
-              <div
-                key={`clone-right-${org.name}`}
-                className="org-card flex-shrink-0 bg-black text-white rounded-3xl cursor-pointer flex flex-col items-center transition-all duration-500 ease-out relative snap-center"
-                style={{
-                  width: isMobile ? "clamp(200px, 70vw, 280px)" : "280px",
-                  minHeight: "400px",
-                  transform: `scale(${scale}) ${adjustedDistance === 0 ? 'translateY(-10px)' : ''}`,
-                  opacity,
-                  boxShadow: `${shadow}, ${borderGlow}`,
-                  padding: "1.5rem",
-                  border: adjustedDistance === 0 ? '2px solid rgba(255,235,59,0.3)' : '2px solid transparent',
-                }}
-                onClick={() => isMobile && scrollToOrganizer(originalIndex)}
-              >
-                <div 
-                  className="rounded-full border-4 border-yellow-500 object-cover transition-all duration-500 overflow-hidden"
-                  style={{
-                    width: '140px',
-                    height: '140px',
-                    borderColor: adjustedDistance === 0 ? '#fbbf24' : '#eab308',
-                    borderWidth: adjustedDistance === 0 ? '4px' : '3px'
-                  }}
-                >
-                  <img
-                    src={org.img}
-                    alt={org.name}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-                
-                <div className="text-center px-2 flex flex-col flex-1 justify-start mt-4">
-                  <h4 className="font-bold mb-2 text-xl text-yellow-400">
-                    {org.name}
-                  </h4>
-                  <p className="text-yellow-200 text-sm font-medium mb-3">
-                    {org.role}
-                  </p>
-                  <p className="text-gray-300 text-sm leading-relaxed flex-1">
-                    {org.bio}
-                  </p>
+                  {org.socials && (
+                    <div className="flex justify-center mt-6 space-x-4">
+                      {org.socials.linkedin && (
+                        <a
+                          href={org.socials.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-yellow-400 hover:text-pink-600 transition-colors"
+                        >
+                          <Linkedin size={24} />
+                        </a>
+                      )}
+                      {org.socials.github && (
+                        <a
+                          href={org.socials.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-yellow-400 hover:text-pink-600 transition-colors"
+                        >
+                          <Github size={24} />
+                        </a>
+                      )}
+                      {org.socials.medium && (
+                        <a
+                          href={org.socials.medium}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-yellow-400 hover:text-pink-600 transition-colors"
+                        >
+                          <MediumIcon size={24} />
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             );
@@ -369,46 +292,23 @@ export const OrganizersSection: React.FC<{ id?: string; className?: string }> = 
         </div>
 
         {/* Dots Navigation */}
-        <div className="flex justify-center mt-6 sm:mt-8 gap-3">
+        <div className="flex justify-center mt-8 gap-3">
           {organizers.map((_, index) => (
             <button
               key={index}
               onClick={() => scrollToOrganizer(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-4 h-4 rounded-full transition-all duration-300 ${
                 activeIndex === index
-                  ? "bg-yellow-500 scale-125 shadow-lg shadow-yellow-500/50"
-                  : "bg-yellow-200 hover:bg-yellow-300 hover:scale-110"
+                  ? "bg-yellow-500 scale-125"
+                  : "bg-gray-400 hover:bg-yellow-200 hover:scale-110"
               }`}
               aria-label={`Go to organizer ${index + 1}`}
             />
           ))}
         </div>
-
-        {/* Gradient overlays for desktop */}
-        <div className="hidden sm:block absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-blue-800 via-blue-800/80 to-transparent pointer-events-none z-40" />
-        <div className="hidden sm:block absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-blue-800 via-blue-800/80 to-transparent pointer-events-none z-40" />
       </div>
-
-      <style>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </div>
   );
 };
-
-// Utility function for debouncing
-function debounce(func: Function, wait: number) {
-  let timeout: NodeJS.Timeout;
-  return function executedFunction(...args: any[]) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
 
 export default OrganizersSection;
