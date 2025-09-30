@@ -216,12 +216,13 @@ function App() {
             <div className="space-y-4">
               <h2 className="text-4xl font-bold text-yellow-500">About the Event</h2>
               <p className="text-lg text-gray-300 leading-relaxed">
-                Get ready to explore the quantum world with us! The Qiskit Fall Fest, the world's largest gathering of student-run quantum computing events, 
-                is officially coming to Wits in 2025.<br/>
-                <br/>
-                This isn't just a series of lectures—it's a chance to join a vibrant, global community supported by IBM Quantum. 
-                Whether you're a curious beginner or a seasoned coder, you'll learn through exciting workshops, collaborative hackathons, and dynamic community meetups. By participating, you're not only learning about
-                the future of technology but also helping to put Wits at the forefront of quantum education and innovation.
+                    Get ready to explore the quantum world with us! The Qiskit Fall Fest, the world’s largest student-led quantum computing festival, is officially coming to Wits in 2025 !! <br/>
+                    <br/> 
+                    This isn’t just a series of lectures — it’s an invitation to join a vibrant global community supported by IBM Quantum. Whether you’re in Computer Science, Finance, Engineering, Commerce, or any other field, quantum computing is something anyone can learn.<br/>
+                    <br/>
+                    Through hands-on workshops, interactive demos, and collaborative hackathons, you’ll discover how quantum concepts connect to real-world problems — from optimization and data analysis to cryptography and finance.<br/>
+                    <br/>
+                    No prior experience is required — just curiosity! By joining, you’ll help put Wits at the forefront of quantum education and innovation while unlocking the potential of quantum technology for your own field.
               </p>
             </div>
           </div>
