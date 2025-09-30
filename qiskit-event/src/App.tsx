@@ -220,7 +220,7 @@ function App() {
                     <br/> 
                     This isn’t just a series of lectures — it’s an invitation to join a vibrant global community supported by IBM Quantum. Whether you’re in Computer Science, Finance, Engineering, Commerce, or any other field, quantum computing is something anyone can learn.<br/>
                     <br/>
-                    Through hands-on workshops, interactive demos, and collaborative hackathons, you’ll discover how quantum concepts connect to real-world problems — from optimization and data analysis to cryptography and finance.<br/>
+                    Through hands-on workshops, interactive demos, and collaborative challenges, you’ll discover how quantum concepts connect to real-world problems — from optimization and data analysis to cryptography and finance.<br/>
                     <br/>
                     No prior experience is required — just curiosity! By joining, you’ll help put Wits at the forefront of quantum education and innovation while unlocking the potential of quantum technology for your own field.
               </p>
