@@ -186,7 +186,7 @@ function App() {
 
             {/* Date and Location */}
             <p className="text-lg sm:text-xl md:text-4xl font-bold text-pink-100" style={{ textShadow: '0 0 2px #fbcfe875' }} >
-              October, 2025 • Wits University
+              11-12 October, 2025 • Wits University
             </p>
 
             {/* Register Button */}
