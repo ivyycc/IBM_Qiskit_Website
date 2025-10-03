@@ -91,7 +91,7 @@ export default function ScheduleSection() {
 
   const { ref, isInView } = useInView({ threshold: 0.3 });
   return (
-    <Section id="schedule" className="bg-black text-white">
+    <Section id="schedule" className="min-h-screen bg-blue-900/60 text-white">
       <div className="text-center mb-16">
         <h2 className="text-4xl font-bold text-yellow-500">Event Schedule</h2>
         <p className="text-lg text-gray-400 mt-2">A two-day dive into the world of quantum.</p>
@@ -117,7 +117,7 @@ export default function ScheduleSection() {
                   ref = {ref as any}
                   src={event.image}
                   alt={event.imageAlt}
-                  className={`w-full max-w-sm h-auto object-contain rounded-lg shadow-lg transform transition-transform duration-500 hover:scale-105  ${
+                  className={`w-full max-w-sm h-auto object-contain rounded-lg transform transition-transform duration-500 hover:scale-105  ${
                             isInView
                               ? dayIdx % 2 === 0
                                 ? 'float-in-left'

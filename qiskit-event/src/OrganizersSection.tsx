@@ -156,7 +156,7 @@ export const OrganizersSection: React.FC<{ id?: string; className?: string }> = 
   return (
     <div
       id={"organizers"}
-      className={`w-full py-16 bg-blue-800 text-white rounded-lg shadow-lg flex flex-col items-center ${className}`}
+      className={`min-h-screen bg-black/40 text-white rounded-lg shadow-lg flex flex-col items-center ${className}`}
     >
       <h3 className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-12 text-center text-yellow-500">
         Meet the Organizers
