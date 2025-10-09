@@ -32,10 +32,10 @@ const speakers: Speaker[] = [
     title: "IBM Quantum Community and Education Developer",
     photo: "/website_photos/Marcel.jpeg",
     shortBio: "Marcel is a Quantum Community and Education Developer at IBM Quantum based in Zurich, Switerland...",
-    fullBio: `He is committed to advancing quantum computing education and connecting people to the global quantum community. 
-    Beyond his work in quantum technologies, he has a strong interest in game design - particularly the mathematical aspects that blend creativity with logic. 
-    Through his talk, he aims to share insights on quantum research, real-world applications, 
-    and career pathways, inspiring students to see how their learning connects to a global ecosystem of researchers and developers.`,
+    fullBio: `He studied Computer Science at ETH Zürich and completed his Master’s in Theory of Computing, followed by research in Quantum Information Theory at USI in Lugano.
+     He then worked as a Software Engineer specializing in AR/VR, and gamification using Unity. In 2020, he joined IBM Research in Zurich, focusing on Education and Workforce Development, 
+     where he contributed to initiatives such as the Qiskit Global Summer School, 
+     IBM Quantum Challenge, and various hackathons. Ultimately, Marcel is dedicated to advancing quantum computing education and connecting people to the global quantum community`,
   },
  {
     name: "Professor Warren Carlson",
