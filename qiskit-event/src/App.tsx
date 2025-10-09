@@ -11,7 +11,7 @@ import WitsMap from "./WitsMap";
 import { ChevronUpIcon } from "lucide-react"; // optional, replace with your SVG if not using Lucide
 import TypingText from './TypingText';// Import the JS for typing effect
 import CountdownTimer from './countdown';
-
+import SpeakersSection from "./SpeakersSection"; 
 
 function ScrollToTop() {
   const [visible, setVisible] = useState(false);
@@ -51,6 +51,7 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const links = [
     { href: "#about", label: "About" },
+    { href: "#mission", label: "Why Join" },
     { href: "#speakers", label: "Speakers" },
     { href: "#schedule", label: "Schedule" },
     { href: "#organizers", label: "Organizers" },
@@ -292,36 +293,8 @@ function App() {
         </Section>
 
 
-        {/* Speakers Section (Example update) */}
-        <Section id="speakers" className="min-h-screen bg-black/40 text-white">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-yellow-500">Speakers</h2>
-            <p className="text-lg text-blue-200 mt-2">Meet the pioneers leading the quantum charge.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Speaker Card - TBC */}
-            <div className="bg-black p-6 rounded-md shadow-lg flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105 hover:shadow-pink-500/50">
-              <div className="w-32 h-32 mb-4 rounded-full border-4 border-yellow-400 bg-gray-700 flex items-center justify-center text-xl font-bold text-yellow-400">
-                ?
-              </div>
-              <h3 className="font-bold text-2xl text-white">Marcel Pfaffhauser</h3>
-              <p className="text-pink-300">Quantum Community and Education Developer at IBM</p>
-              <p className="text-sm text-blue-300 mt-2 italic">More details to follow!</p>
-            </div>
-
-
-            {/* Speaker Card - Known */}
-            <div className="bg-black p-6 rounded-md shadow-lg flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105 hover:shadow-pink-500/50">
-              <div className="w-32 h-32 mb-4 rounded-full border-4 border-yellow-400 bg-gray-700 flex items-center justify-center text-2xl font-bold text-yellow-400">
-                SK
-              </div>
-              <h3 className="font-bold text-2xl text-white">Shawal Kassim</h3>
-              <p className="text-pink-300">Wits University Researcher</p>
-              <p className="text-sm text-blue-300 mt-2 italic">More details to follow!</p>
-            </div>
-          </div>
-        </Section>
+        {/* Speakers Section*/}
+        <SpeakersSection />
 
 
         {/* Schedule Section */}
