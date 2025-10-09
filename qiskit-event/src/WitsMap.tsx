@@ -9,12 +9,13 @@ const witsCoords = { lat: -26.1912498, lng: 28.0261846 };
 
 export default function WitsMap() {
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY! ,
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY! ,
   });
 
   if (!isLoaded) return <p className="text-center text-yellow-500">Loading map...</p>;
-
+  console.log("WitsMap component rendered and API Key is:", process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
   return (
+    
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={witsCoords}
