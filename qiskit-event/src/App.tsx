@@ -198,7 +198,13 @@ function App() {
               </div>
 
               {/* Location */}
-              <div className="flex items-center gap-2 bg-yellow-500/20 text-yellow-100 font-semibold px-4 py-2 rounded-full shadow-sm">
+              <div
+                onClick={() => {
+                  const el = document.getElementById("map");
+                  el?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="cursor-pointer flex items-center gap-2 bg-yellow-500/20 text-yellow-100 font-semibold px-4 py-2 rounded-full shadow-sm"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5 text-yellow-200"
@@ -206,8 +212,18 @@ function App() {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5 9 6.343 9 8s1.343 3 3 3z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 22s8-4.5 8-10a8 8 0 10-16 0c0 5.5 8 10 8 10z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5 9 6.343 9 8s1.343 3 3 3z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 22s8-4.5 8-10a8 8 0 10-16 0c0 5.5 8 10 8 10z"
+                  />
                 </svg>
                 <span>Wits University</span>
               </div>
@@ -318,7 +334,7 @@ function App() {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 w-full max-w-7xl px-4 sm:px-8">
               {/* Left Column: Venue Details & Map */}
-              <div className="bg-black/60 rounded-lg p-6 md:p-8 shadow-xl">
+              <div id="map" className="bg-black/60 rounded-lg p-6 md:p-8 shadow-xl">
                 <h3 className="text-2xl font-bold text-yellow-400 mb-4">Our Location</h3>
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">
                   The Qiskit Fall Fest will be hosted at WITS University in MSL (Mathematical Sciences Laboratories).
