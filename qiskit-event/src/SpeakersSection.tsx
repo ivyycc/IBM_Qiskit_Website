@@ -41,8 +41,8 @@ const speakers: Speaker[] = [
     name: "Professor Warren Carlson",
     title: "Lecturer at the University of Witwatersrand",
     photo: "/website_photos/placeholder.png",
-    shortBio: "Professor Warren is a Lecturer at the University of Witwatersrand...",
-    fullBio: `Holding a PhD in Physics, Prof Warren is deeply engaged in shaping a future built on the power of quantum physics and mathematics. 
+    shortBio: "Professor Warren Carlson is a Lecturer at the University of Witwatersrand...",
+    fullBio: `Holding a PhD in Physics, he is deeply engaged in shaping a future built on the power of quantum physics and mathematics. 
     His research spans string theory, black hole physics, and quantum field theory, offering deep insights into the mathematical foundations of the universe. 
     Drawing from this background, he brings a unique perspective to quantum computing and its underlying physical principles.`,
   },
