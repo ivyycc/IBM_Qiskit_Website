@@ -304,10 +304,10 @@ function App() {
         <OrganizersSection />
 
         {/* Resources Section */}
-        <Section id="resources" className="min-h-screen bg-blue-900/60 text-white">
+        <Section id="resources" className="min-h-screen bg-blue-900/60 text-white py-20">
           <div
             id="resources-venue"
-            className="w-full py-16 text-white flex flex-col items-center"
+            className="w-full text-white flex flex-col items-center"
           >
             <div className="text-center mb-12">
               <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold text-yellow-500">

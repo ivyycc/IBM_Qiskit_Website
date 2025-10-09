@@ -91,7 +91,7 @@ export default function ScheduleSection() {
 
   const { ref, isInView } = useInView({ threshold: 0.3 });
   return (
-    <Section id="schedule" className="min-h-screen bg-blue-900/60 text-white">
+    <Section id="schedule" className="min-h-screen bg-blue-900/60 text-white py-20">
       <div className="text-center mb-16">
         <h2 className="text-4xl font-bold text-yellow-500">Event Schedule</h2>
         <p className="text-lg text-gray-400 mt-2">A two-day dive into the world of quantum.</p>

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 // The target date and time for the event: 11 October, 2025 at 00:00:00 (midnight)
 // NOTE: Adjust the timezone if necessary. This uses local time by default.
-const TARGET_DATE = new Date('October 11, 2025 00:00:00').getTime();
+const TARGET_DATE = new Date('October 11, 2025 09:00:00').getTime();
 
 const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());

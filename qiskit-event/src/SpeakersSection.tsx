@@ -60,7 +60,7 @@ const speakers: Speaker[] = [
 
 export default function SpeakersSection() {
   return (
-    <section id="speakers" className="min-h-screen bg-black/40 text-white py-12">
+    <section id="speakers" className="min-h-screen bg-black/40 text-white py-20">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-yellow-500">Speakers</h2>
         <p className="text-lg text-blue-200 mt-2">Meet the pioneers leading the quantum charge.</p>
