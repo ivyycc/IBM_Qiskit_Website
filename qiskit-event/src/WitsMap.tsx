@@ -13,7 +13,8 @@ export default function WitsMap() {
   });
 
   if (!isLoaded) return <p className="text-center text-yellow-500">Loading map...</p>;
-  console.log("WitsMap component rendered and API Key is:", process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
+  
+  //console.log("WitsMap component rendered and API Key is:", process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
   return (
     
     <GoogleMap
