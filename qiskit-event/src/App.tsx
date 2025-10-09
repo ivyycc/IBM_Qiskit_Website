@@ -8,6 +8,8 @@ import { OrganizersSection } from "./OrganizersSection";
 import ScheduleSection from "./ScheduleSection";
 import { Menu, X } from "lucide-react";
 import WitsMap from "./WitsMap";
+import { witsCoords } from './WitsMap';
+
 import { ChevronUpIcon } from "lucide-react"; // optional, replace with your SVG if not using Lucide
 import TypingText from './TypingText';// Import the JS for typing effect
 import CountdownTimer from './countdown';
@@ -319,11 +321,11 @@ function App() {
               <div className="bg-black/60 rounded-lg p-6 md:p-8 shadow-xl">
                 <h3 className="text-2xl font-bold text-yellow-400 mb-4">Our Location</h3>
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                  The Qiskit Fall Fest will be hosted at WITS University (specific venue TBC).
+                  The Qiskit Fall Fest will be hosted at WITS University in MSL (Mathematical Sciences Laboratories).
                   
                 </p>
                       <div 
-                          className="w-full h-80 lg:h-96 rounded-lg overflow-hidden shadow-2xl transition-all duration-300"
+                          className="w-full h-80 lg:h-96 rounded-lg overflow-hidden shadow-2xl transition-all duration-300 mb-6"
                           style={{
                             border: '2px solid transparent', // Keep transparent border for consistency
                             boxShadow: '0 0 15px rgba(210, 74, 140, 0.64)' // Apply the pink glow here
@@ -331,6 +333,14 @@ function App() {
                         >
                   <WitsMap />
                 </div>
+                    <a
+                      href={`https://www.google.com/maps/dir/?api=1&destination=${witsCoords.lat},${witsCoords.lng}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block p-5 rounded-lg bg-blue-800 hover:bg-blue-900 text-white font-semibold shadow-lg transition-all duration-300 transform hover:scale-105"
+                    >
+                      Get Directions
+                    </a>
               </div>
               {/* Right Column: Key Resources */}
               <div className="bg-black/60 rounded-lg p-6 md:p-8 shadow-xl border-2 border-blue-900">
