@@ -225,7 +225,7 @@ function App() {
                     d="M12 22s8-4.5 8-10a8 8 0 10-16 0c0 5.5 8 10 8 10z"
                   />
                 </svg>
-                <span>Wits University</span>
+                <span>MSL 104, Wits University</span>
               </div>
             </div>
 
@@ -337,7 +337,7 @@ function App() {
               <div id="map" className="bg-black/60 rounded-lg p-6 md:p-8 shadow-xl">
                 <h3 className="text-2xl font-bold text-yellow-400 mb-4">Our Location</h3>
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                  The Qiskit Fall Fest will be hosted at WITS University in MSL (Mathematical Sciences Laboratories).
+                  The Qiskit Fall Fest will be hosted at WITS University in MSL 104, ground floor (Mathematical Sciences Labs).
                   
                 </p>
                       <div 

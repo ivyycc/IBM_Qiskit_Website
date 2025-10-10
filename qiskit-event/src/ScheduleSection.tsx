@@ -50,12 +50,12 @@ export default function ScheduleSection() {
       day: "Day 1: Quantum Kickoff",
       theme: "Intro to quantum + Qiskit basics",
       items: [
-        { time: "9:00 – 9:15", title: "Welcome & Icebreaker", description: "Kick things off with a warm welcome and a fun icebreaker activity to get to know fellow attendees." },
-        { time: "9:15 – 10:00", title: "Talk: Quantum Computing Basics 101", description: "A foundational lecture on the core principles of quantum computing, covering concepts like superposition and entanglement." },
-        { time: "10:00 – 10:15", title: "Break", description: "Take a quick snack break." },
-        { time: "10:15 – 11:30", title: "Workshop: Getting Started with Qiskit", description: "A hands-on workshop to install Qiskit and run your first superposition circuit, visualizing probability histograms." },
-        { time: "11:30 – 12:00", title: "Quantum Trivia Kahoot!", description: "A fun and interactive trivia game with great prizes for the top three winners." },
-        { time: "12:00 – 12:30", title: "Panel/Q&A", description: "An insightful session with quantum experts sharing their career journeys and answering your questions." },
+        { time: "9:00 – 9:30", title: "Welcome & Icebreaker", description: "Kick things off with a warm welcome and a fun icebreaker activity to get to know fellow attendees." },
+        { time: "9:30 – 10:30", title: "Talk: Quantum Computing Basics 101", description: "A foundational lecture on the core principles of quantum computing, covering concepts like superposition and entanglement." },
+        { time: "10:30 – 10:50", title: "Break", description: "Take a quick snack break." },
+        { time: "10:50 – 12:10", title: "Workshop: Getting Started with Qiskit", description: "A hands-on workshop to install Qiskit and run your first superposition circuit, visualizing probability histograms." },
+        { time: "12:10 – 12:30", title: "Quantum Trivia Kahoot!", description: "A fun and interactive trivia game with great prizes for the top three winners." },
+        { time: "12:30 – 13:20", title: "Talk + Panel/Q&A", description: "An insightful session with quantum experts sharing their career journeys and answering your questions." },
       ],
       image: "/Fall Fest Graphics/Emojis/Timeline_01.png",
       imageAlt: "Day 1 Quantum Computing Workshop"
